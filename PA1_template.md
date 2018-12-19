@@ -14,7 +14,6 @@ output:
 
 ```r
 library(ggplot2)
-setwd("C:/Bioinformatics/RClass/RepData_PeerAssessment1")
 unzip("activity.zip")
 activity <- read.csv("activity.csv", header = TRUE, na.strings = "NA")
 activity$date <- as.Date(activity$date, format = "%Y-%m-%d")

@@ -198,7 +198,6 @@ $(document).ready(function () {
 <li>Convert date column from factor into date</li>
 </ol>
 <pre class="r"><code>library(ggplot2)
-setwd(&quot;C:/Bioinformatics/RClass/RepData_PeerAssessment1&quot;)
 unzip(&quot;activity.zip&quot;)
 activity &lt;- read.csv(&quot;activity.csv&quot;, header = TRUE, na.strings = &quot;NA&quot;)
 activity$date &lt;- as.Date(activity$date, format = &quot;%Y-%m-%d&quot;)</code></pre>
