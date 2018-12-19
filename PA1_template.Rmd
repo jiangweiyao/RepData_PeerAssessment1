@@ -25,9 +25,9 @@ activity$date <- as.Date(activity$date, format = "%Y-%m-%d")
 4. Calculate median of steps per date
 ```{r steps per day}
 steps_vs_date <- aggregate(steps ~ date, data = activity, sum)
-ggplot(data = steps_vs_date, aes(steps))+geom_histogram(binwidth = 1000)
 print(paste0("The mean of total numbers of steps taken per day is ", mean(steps_vs_date$steps)))
 print(paste0("The median of total numbers of steps taken per day is ", median(steps_vs_date$steps)))
+ggplot(data = steps_vs_date, aes(steps))+geom_histogram(binwidth = 1000)
 ```
 
 ## What is the average daily activity pattern?
@@ -36,9 +36,9 @@ print(paste0("The median of total numbers of steps taken per day is ", median(st
 3. Use which max to identify the 5-minute interval period containing the max number of steps. 
 ```{r steps per interval}
 steps_vs_interval <- aggregate(steps ~ interval, data = activity, mean)
-ggplot(data = steps_vs_interval, aes(x = interval, y = steps))+geom_line()
 print(paste0("The 5-minute interval that contains the maximum number of steps on average is: ",
              steps_vs_interval$interval[which.max(steps_vs_interval$steps)], " 5-minute interval"))
+ggplot(data = steps_vs_interval, aes(x = interval, y = steps))+geom_line()
 ```
 
 
@@ -53,9 +53,9 @@ print(paste0("Total number of missing values is ", sum(is.na(activity))))
 activity_impute <- activity
 activity_impute$steps[is.na(activity_impute$steps)] <- mean(activity_impute$steps, na.rm = TRUE)
 steps_vs_date_impute <- aggregate(steps ~ date, data = activity_impute, sum)
-ggplot(data = steps_vs_date_impute, aes(steps))+geom_histogram(binwidth = 1000)
 print(paste0("The mean of total numbers of steps taken per day is ", mean(steps_vs_date_impute$steps)))
 print(paste0("The median of total numbers of steps taken per day is ", median(steps_vs_date_impute$steps)))
+ggplot(data = steps_vs_date_impute, aes(steps))+geom_histogram(binwidth = 1000)
 ```
 
 ## Are there differences in activity patterns between weekdays and weekends?

@@ -27,12 +27,6 @@ activity$date <- as.Date(activity$date, format = "%Y-%m-%d")
 
 ```r
 steps_vs_date <- aggregate(steps ~ date, data = activity, sum)
-ggplot(data = steps_vs_date, aes(steps))+geom_histogram(binwidth = 1000)
-```
-
-![](PA1_template_files/figure-html/steps per day-1.png)<!-- -->
-
-```r
 print(paste0("The mean of total numbers of steps taken per day is ", mean(steps_vs_date$steps)))
 ```
 
@@ -48,6 +42,12 @@ print(paste0("The median of total numbers of steps taken per day is ", median(st
 ## [1] "The median of total numbers of steps taken per day is 10765"
 ```
 
+```r
+ggplot(data = steps_vs_date, aes(steps))+geom_histogram(binwidth = 1000)
+```
+
+![](PA1_template_files/figure-html/steps per day-1.png)<!-- -->
+
 ## What is the average daily activity pattern?
 1. Use aggregate to steps per interval
 2. Plot steps vs interval using ggplot
@@ -55,12 +55,6 @@ print(paste0("The median of total numbers of steps taken per day is ", median(st
 
 ```r
 steps_vs_interval <- aggregate(steps ~ interval, data = activity, mean)
-ggplot(data = steps_vs_interval, aes(x = interval, y = steps))+geom_line()
-```
-
-![](PA1_template_files/figure-html/steps per interval-1.png)<!-- -->
-
-```r
 print(paste0("The 5-minute interval that contains the maximum number of steps on average is: ",
              steps_vs_interval$interval[which.max(steps_vs_interval$steps)], " 5-minute interval"))
 ```
@@ -68,6 +62,12 @@ print(paste0("The 5-minute interval that contains the maximum number of steps on
 ```
 ## [1] "The 5-minute interval that contains the maximum number of steps on average is: 835 5-minute interval"
 ```
+
+```r
+ggplot(data = steps_vs_interval, aes(x = interval, y = steps))+geom_line()
+```
+
+![](PA1_template_files/figure-html/steps per interval-1.png)<!-- -->
 
 
 ## Imputing missing values
@@ -97,12 +97,6 @@ print(paste0("Total number of missing values is ", sum(is.na(activity))))
 activity_impute <- activity
 activity_impute$steps[is.na(activity_impute$steps)] <- mean(activity_impute$steps, na.rm = TRUE)
 steps_vs_date_impute <- aggregate(steps ~ date, data = activity_impute, sum)
-ggplot(data = steps_vs_date_impute, aes(steps))+geom_histogram(binwidth = 1000)
-```
-
-![](PA1_template_files/figure-html/missing values-1.png)<!-- -->
-
-```r
 print(paste0("The mean of total numbers of steps taken per day is ", mean(steps_vs_date_impute$steps)))
 ```
 
@@ -117,6 +111,12 @@ print(paste0("The median of total numbers of steps taken per day is ", median(st
 ```
 ## [1] "The median of total numbers of steps taken per day is 10766.1886792453"
 ```
+
+```r
+ggplot(data = steps_vs_date_impute, aes(steps))+geom_histogram(binwidth = 1000)
+```
+
+![](PA1_template_files/figure-html/missing values-1.png)<!-- -->
 
 ## Are there differences in activity patterns between weekdays and weekends?
 1. Use weekday function to get day of the week. If it's Saturday or Sunday, label it as weekend. Else as weekday. 
